@@ -137,7 +137,8 @@ public class TabActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab_reminders, container, false);
-
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText("Reminders!");
             return rootView;
         }
     }
@@ -160,7 +161,32 @@ public class TabActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab_alerts, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText("Alerts!");
+            return rootView;
+        }
+    }
 
+    public static class EntriesFragment extends Fragment {
+
+        public EntriesFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static EntriesFragment newInstance(int position) {
+            EntriesFragment fragment = new EntriesFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_entries, container, false);
+            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+            textView.setText("Entries!");
             return rootView;
         }
     }
@@ -179,20 +205,24 @@ public class TabActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if(position == 0)
+            if (position == 0)
             {
                 return RemindersFragment.newInstance(position);
             }
-            else //if (position == 1)
+            if (position == 1)
             {
                 return AlertsFragment.newInstance(position);
+            }
+            else //if (position == 2)
+            {
+                return EntriesFragment.newInstance(position);
             }
         }
 
         @Override
         public int getCount() {
-            // Show 2 total pages.
-            return 2;
+            // Show 3 total pages.
+            return 3;
         }
     }
 }
