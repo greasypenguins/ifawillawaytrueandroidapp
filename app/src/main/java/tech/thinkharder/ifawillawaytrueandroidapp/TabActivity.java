@@ -1,5 +1,7 @@
 package tech.thinkharder.ifawillawaytrueandroidapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 public class TabActivity extends AppCompatActivity {
@@ -204,6 +207,31 @@ public class TabActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab_main, container, false);
+
+            final Button buttonBloodSugar = rootView.findViewById(R.id.log_blood_sugar);
+            buttonBloodSugar.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            final Button buttonBolus = rootView.findViewById(R.id.log_bolus);
+            buttonBolus.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            final Button buttonMeal = rootView.findViewById(R.id.log_meal);
+            buttonMeal.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    startActivity(intent);
+                }
+            });
+
             return rootView;
         }
     }
