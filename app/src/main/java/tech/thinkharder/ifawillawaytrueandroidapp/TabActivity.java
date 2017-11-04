@@ -119,6 +119,52 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
+    public static class RemindersFragment extends Fragment {
+
+        public RemindersFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static RemindersFragment newInstance(int position) {
+            RemindersFragment fragment = new RemindersFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_reminders, container, false);
+
+            return rootView;
+        }
+    }
+
+    public static class AlertsFragment extends Fragment {
+
+        public AlertsFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static AlertsFragment newInstance(int position) {
+            AlertsFragment fragment = new AlertsFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_alerts, container, false);
+
+            return rootView;
+        }
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -133,13 +179,20 @@ public class TabActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if(position == 0)
+            {
+                return RemindersFragment.newInstance(position);
+            }
+            else //if (position == 1)
+            {
+                return AlertsFragment.newInstance(position);
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 2 total pages.
+            return 2;
         }
     }
 }
