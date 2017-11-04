@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="@dimen/tab_label_top_margin"
-        android:text="Alerts"
+        android:text="Contacts"
         android:textSize="@dimen/tab_label_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

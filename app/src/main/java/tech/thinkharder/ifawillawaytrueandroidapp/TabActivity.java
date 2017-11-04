@@ -49,6 +49,7 @@ public class TabActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        mViewPager.setCurrentItem(3, false);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -119,26 +120,90 @@ public class TabActivity extends AppCompatActivity {
         }
     }
 
-    public static class RemindersFragment extends Fragment {
+    public static class MealsFragment extends Fragment {
 
-        public RemindersFragment() {
+        public MealsFragment() {
         }
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static RemindersFragment newInstance(int position) {
-            RemindersFragment fragment = new RemindersFragment();
+        public static MealsFragment newInstance(int position) {
+            MealsFragment fragment = new MealsFragment();
             return fragment;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_tab_reminders, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Reminders!");
+            View rootView = inflater.inflate(R.layout.fragment_tab_records_meals, container, false);
+            return rootView;
+        }
+    }
+
+    public static class InsulinFragment extends Fragment {
+
+        public InsulinFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static InsulinFragment newInstance(int position) {
+            InsulinFragment fragment = new InsulinFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_records_insulin, container, false);
+            return rootView;
+        }
+    }
+
+    public static class BloodSugarFragment extends Fragment {
+
+        public BloodSugarFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static BloodSugarFragment newInstance(int position) {
+            BloodSugarFragment fragment = new BloodSugarFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_records_blood_sugar, container, false);
+            return rootView;
+        }
+    }
+
+    public static class MainFragment extends Fragment {
+
+        public MainFragment() {
+        }
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static MainFragment newInstance(int position) {
+            MainFragment fragment = new MainFragment();
+            return fragment;
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_tab_main, container, false);
             return rootView;
         }
     }
@@ -161,32 +226,28 @@ public class TabActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab_alerts, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Alerts!");
             return rootView;
         }
     }
 
-    public static class EntriesFragment extends Fragment {
+    public static class ContactsFragment extends Fragment {
 
-        public EntriesFragment() {
+        public ContactsFragment() {
         }
 
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static EntriesFragment newInstance(int position) {
-            EntriesFragment fragment = new EntriesFragment();
+        public static ContactsFragment newInstance(int position) {
+            ContactsFragment fragment = new ContactsFragment();
             return fragment;
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_tab_entries, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText("Entries!");
+            View rootView = inflater.inflate(R.layout.fragment_tab_contacts, container, false);
             return rootView;
         }
     }
@@ -205,24 +266,29 @@ public class TabActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if (position == 0)
+            switch (position)
             {
-                return RemindersFragment.newInstance(position);
-            }
-            if (position == 1)
-            {
-                return AlertsFragment.newInstance(position);
-            }
-            else //if (position == 2)
-            {
-                return EntriesFragment.newInstance(position);
+                case 0:
+                    return MealsFragment.newInstance(position);
+                case 1:
+                    return InsulinFragment.newInstance(position);
+                case 2:
+                    return BloodSugarFragment.newInstance(position);
+                case 3:
+                    return MainFragment.newInstance(position);
+                case 4:
+                    return AlertsFragment.newInstance(position);
+                case 5:
+                    return ContactsFragment.newInstance(position);
+                default:
+                    return MainFragment.newInstance(position);
             }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 3;
+            // Show 6 total pages.
+            return 6;
         }
     }
 }
