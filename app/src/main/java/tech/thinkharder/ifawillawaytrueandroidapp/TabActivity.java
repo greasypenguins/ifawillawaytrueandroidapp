@@ -1,9 +1,19 @@
 package tech.thinkharder.ifawillawaytrueandroidapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.Vibrator;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -12,6 +22,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,6 +88,29 @@ public class TabActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class BloodSugarAlertDialogFragment extends android.support.v4.app.DialogFragment {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the Builder class for convenient dialog construction
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage(R.string.dialog_blood_sugar_alert)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent intent = new Intent(getActivity(), AaronMainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton(R.string.delay_1_minute, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            //Alarm += 1 min
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            return builder.create();
+        }
     }
 
     /**
@@ -256,6 +290,19 @@ public class TabActivity extends AppCompatActivity {
                     Snackbar snackbarAlarmSet = Snackbar.make(v, "Alarm set for " + alertTime, Snackbar.LENGTH_SHORT);
                     snackbarAlarmSet.setAction("Action", null);
                     snackbarAlarmSet.show();
+                }
+            });
+
+
+
+            final Button buttonTestAlarm = rootView.findViewById(R.id.test_alert);
+            buttonTestAlarm.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    BloodSugarAlertDialogFragment bloodSugarDialog = new BloodSugarAlertDialogFragment();
+
+                    bloodSugarDialog.show(fm, "dialog_blood_sugar");
                 }
             });
 
