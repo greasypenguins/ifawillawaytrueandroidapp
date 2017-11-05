@@ -14,4 +14,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TabActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = new Intent(this, TabActivity.class);
+        startActivity(intent);
+    }
 }

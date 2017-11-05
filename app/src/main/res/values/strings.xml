@@ -3,4 +3,6 @@
     <string name="title_activity_tab">TabActivity</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_aaron_main">AaronMainActivity</string>
+    <string name="edit_message">Enter a value</string>
 </resources>

@@ -202,7 +202,7 @@ public class TabActivity extends AppCompatActivity {
             final Button buttonBloodSugar = rootView.findViewById(R.id.log_blood_sugar);
             buttonBloodSugar.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    Intent intent = new Intent(getActivity(), AaronMainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -210,7 +210,7 @@ public class TabActivity extends AppCompatActivity {
             final Button buttonBolus = rootView.findViewById(R.id.log_bolus);
             buttonBolus.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    Intent intent = new Intent(getActivity(), AaronMainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -218,7 +218,7 @@ public class TabActivity extends AppCompatActivity {
             final Button buttonMeal = rootView.findViewById(R.id.log_meal);
             buttonMeal.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), LogActivity.class);
+                    Intent intent = new Intent(getActivity(), AaronMainActivity.class);
                     startActivity(intent);
                 }
             });
@@ -253,11 +253,9 @@ public class TabActivity extends AppCompatActivity {
                     String hour = Integer.toString(timePicker.getCurrentHour());
                     String minute = Integer.toString(timePicker.getCurrentMinute());
                     String alertTime = hour + ":" + minute;
-                    Snackbar snackbarAlarmSet = Snackbar.make(v, "Alarm set for " + alertTime, Snackbar.LENGTH_LONG);
+                    Snackbar snackbarAlarmSet = Snackbar.make(v, "Alarm set for " + alertTime, Snackbar.LENGTH_SHORT);
                     snackbarAlarmSet.setAction("Action", null);
                     snackbarAlarmSet.show();
-                    timePicker.setCurrentHour(0);
-                    timePicker.setCurrentMinute(0);
                 }
             });
 
