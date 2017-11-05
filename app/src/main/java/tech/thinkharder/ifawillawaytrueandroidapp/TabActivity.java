@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 public class TabActivity extends AppCompatActivity {
 
@@ -244,6 +245,18 @@ public class TabActivity extends AppCompatActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_tab_alerts, container, false);
+
+            final Button buttonSetAlarm = rootView.findViewById(R.id.set_alert);
+            buttonSetAlarm.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    TimePicker timePicker = v.findViewById(R.id.time_picker);
+                    String alertTime = timePicker.toString();
+                    Snackbar snackbarAlarmSet = Snackbar.make(v, "Alert set for", Snackbar.LENGTH_LONG);
+                    snackbarAlarmSet.setAction("Action", null);
+                    snackbarAlarmSet.show();
+                }
+            });
+
             return rootView;
         }
     }
