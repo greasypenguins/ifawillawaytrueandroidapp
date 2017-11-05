@@ -256,6 +256,8 @@ public class TabActivity extends AppCompatActivity {
                     Snackbar snackbarAlarmSet = Snackbar.make(v, "Alarm set for " + alertTime, Snackbar.LENGTH_LONG);
                     snackbarAlarmSet.setAction("Action", null);
                     snackbarAlarmSet.show();
+                    timePicker.setCurrentHour(0);
+                    timePicker.setCurrentMinute(0);
                 }
             });
 
